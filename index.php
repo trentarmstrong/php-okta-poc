@@ -7,11 +7,6 @@
     $dotenv = new Dotenv\Dotenv(__DIR__);
     $dotenv->overload();
 
-    // Logger
-    $log = new Monolog\Logger('index');
-    $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::WARNING));
-    $log->addWarning('Foo');
-
     $state = 'applicationState';
 
     // Router
@@ -32,7 +27,7 @@
                 'response_type' => 'code',
                 'response_mode' => 'query',
                 'scope' => 'openid profile',
-                'redirect_uri' => 'http://localhost:8080/authorization-code/callback',
+                'redirect_uri' => getenv('REDIRECT_URI'),
                 'state' => $state,
                 'nonce' => random_bytes(32)
             ]);
@@ -71,7 +66,7 @@
         $query = http_build_query([
             'grant_type' => 'authorization_code',
             'code' => $code,
-            'redirect_uri' => 'http://localhost:8080/authorization-code/callback'
+            'redirect_uri' => getenv('REDIRECT_URI')
         ]);
         $headers = [
             'Authorization: Basic ' . $authHeaderSecret,
