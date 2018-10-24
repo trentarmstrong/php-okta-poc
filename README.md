@@ -2,6 +2,24 @@
 
 This project was put together as a POC to demonstrate a simple implementation of an Okta authentication integration within a PHP application. The application just consists of a single home page with a login/logout button that makes use of the Okta Hosted login page.
 
+# Project Pre-requisites
+
+1. PHP 7.1
+2. Composer 1.7.2 [Instructions for Mac](https://www.abeautifulsite.net/installing-composer-on-os-x)
+
+# Run the Application
+You can run the project locally by first installing dependencies:
+
+```
+composer install
+```
+
+Then running a local server (tested on Mac OSX)
+
+```
+php -S 127.0.0.1:8080
+```
+
 # File Descriptions
 
 **.env.sample**
@@ -28,6 +46,7 @@ Main entry point for the application, contains the bulk of the code.
 Simple PHP test page just to check that PHP was installed correctly. Can access this at http://{ec2-host}/test.php.
 
 # Other Notes
-Make sure to swap
+Project was built with this as reference:
+https://github.com/okta/samples-php/tree/develop/okta-hosted-login
 
 
